@@ -24,5 +24,5 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { registerCommand } from 'cypress-wait-for-stable-dom'
-registerCommand()
+import { registerCommand } from "cypress-wait-for-stable-dom";
+registerCommand();

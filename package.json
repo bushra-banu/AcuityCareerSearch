@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "cypress": "^15.5.0",
+    "cypress-log-to-output": "^1.1.2",
     "cypress-wait-for-stable-dom": "^0.1.0"
   },
   "scripts": {

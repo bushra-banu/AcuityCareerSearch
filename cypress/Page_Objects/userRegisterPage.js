@@ -1,7 +1,7 @@
 class userRegisterPage {
 
   get emailField() {
-    return cy.get('[class="form-control invalidInput"]');
+    return cy.get('[id="fbclc_userName"]');
   }
 
   get retypeEmailField() {
@@ -80,3 +80,4 @@ class userRegisterPage {
     return cy.get('[id="fbqa_apply"');
   }
 }
+export default new userRegisterPage();
