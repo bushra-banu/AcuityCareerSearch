@@ -26,6 +26,9 @@ class userRegisterPage {
     return cy.get('[id="fbclc_lName"]');
   }
   
+get createAccountBtn() {
+    return cy.get('[id="fbclc_createAccountButton"]');
+  } 
   get prefferedNameField() {
     
     return cy.get('[id="tor__fcust_prefname"]');
@@ -36,48 +39,20 @@ class userRegisterPage {
   }
 
   get countrySelection() {
-    return cy.get('[id="9:_input"]');
-  }
-
-  get countrySelectionOption() {
-    return cy.get('[id="9:_selectButton"]');
-  }
-
-  get addressField() {
-  
-    return cy.get('id="tor__faddress"');  
-  }
-
-  get cityField() {
-    return cy.get('[id="tor__fcity"]');
-  }
-
-  get stateField() {
-    return cy.get('[id="13:_input"]');
-  }
-
-  get stateFieldOption() {
-    return cy.get('[id="13:_selectButton"]');
-  }
-
-  get zipCodeField() {
-    return cy.get('[id="tor__fzip"]');
-  }
-
-  get employmentStatusDropdown() {
-    return cy.get('id="17:_input"');
-  }
-
-  get employmentInfoOption() {
-    return cy.get('[id="18:item1"]');
-  }
-
-  get countryRegionDropdown() {
     return cy.get('[id="fbclc_country"]');
   }
 
-  get applyBtn() {
-    return cy.get('[id="fbqa_apply"');
+  get countrySelectionOption() {
+    return cy.get('[id="fbclc_country"]');
   }
+
+ get termAndConditionLink() {
+
+    return cy.get('[id="dataPrivacyId"]');
+ }
+
+ get termAndConditionAcceptBtn(){
+    return cy.get('[class="globalRoundedCornersXSmall globalPrimaryButton fd-button fd-button--emphasized"]');
+ }
 }
 export default new userRegisterPage();
