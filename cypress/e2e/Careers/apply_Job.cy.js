@@ -1,5 +1,5 @@
 
-import userRegisterPage from "../../page_Objects/userRegisterPage";
+import userRegisterPage from "../../Page_Objects/userRegisterPage";
 import { faker } from "@faker-js/faker";
 
 

@@ -1,10 +1,10 @@
 class JobsApplyPage {
   get applyButton() {
-    return cy.get('[class="btn btn-primary btn-large btn-lg dropdown-toggle"]');
+    return cy.get('a.dialogApplyBtn, button[aria-label="Apply now"], button.dropdown-toggle').filter(':visible').first();
   }
 
-  get applyNow(){
-    return cy.get('[id="applyOption-top-manual"]');
+  get applyNow() {
+    return cy.get('a.dialogApplyBtn, button[aria-label="Apply now"]').filter(':visible').first();
   }
 }
 export default new JobsApplyPage();

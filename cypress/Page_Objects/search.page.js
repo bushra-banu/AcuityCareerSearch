@@ -1,33 +1,30 @@
 class search {
-  get searchByLocation() {
-    return cy.get('[class="locationsearch-icon"]');
-  }
-
   get searchOpenJobs_Btn() {
-    return cy.get('[class="btn keywordsearch-button"]');
+    return cy.get('input.keywordsearch-button');
   }
+
   get searchByKeyword() {
-    return cy.get('[class="keywordsearch-q columnized-search"]');
+    return cy.get('input[name="q"]');
   }
 
   get searchByLocation() {
-    return cy.get('[class="keywordsearch-locationsearch columnized-search"]');
+    return cy.get('input[name="locationsearch"]');
   }
 
   get searchResultFirstTitle() {
-    return cy.get('[id="searchresults"]');
+    return cy.get('#searchresults');
   }
 
   get searchByTitle() {
-    return cy.get('[id="title"]');
+    return cy.get('input[name="title"]');
   }
 
   get filterBtn() {
-    return cy.get('[class="btn btn-default"]');
+    return cy.get('button[type="submit"], input[type="submit"]').filter(':visible').first();
   }
 
   get selectJobLink() {
-    return cy.get('[class="colTitle"]');
+    return cy.get('a.jobTitle-link');
   }
 }
 export default new search();
