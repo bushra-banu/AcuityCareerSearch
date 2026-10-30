@@ -1,3 +1,8 @@
+/**
+ * @file Registers a new user through an open job, then signs out.
+ * Each run creates a real, permanent account on the live SuccessFactors site.
+ */
+
 import { test, expect } from "../../fixtures/pages.js";
 import { generateUser } from "../../utils/test-data.js";
 

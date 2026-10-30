@@ -1,4 +1,10 @@
+/**
+ * Page object for the SuccessFactors sign-in and Create an Account pages.
+ */
 export class UserRegisterPage {
+  /**
+   * @param {import("@playwright/test").Page} page - Page to find the elements on.
+   */
   constructor(page) {
     this.page = page;
     this.createAccountLink = page.getByRole("link", { name: "Create an account" });

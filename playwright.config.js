@@ -1,3 +1,7 @@
+/**
+ * @file Playwright settings: base URL, timeouts, reporters, recorded artifacts and browser.
+ */
+
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({

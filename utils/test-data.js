@@ -1,6 +1,14 @@
+/**
+ * @file Generates fake user data for the registration spec.
+ */
+
 import { faker } from "@faker-js/faker";
 
-// Site rule: 8-18 characters, upper and lower case, plus a number or punctuation.
+/**
+ * Generates a password that meets the site's password rule.
+ * Site rule: 8-18 characters, upper and lower case, plus a number or punctuation.
+ * @returns {string} The generated password.
+ */
 export function generatePassword() {
   const upper = faker.string.alpha({ length: 1, casing: "upper" });
   const lower = faker.string.alpha({ length: 1, casing: "lower" });
@@ -17,6 +25,10 @@ export function generatePassword() {
   return faker.helpers.shuffle((upper + lower + numberOrSymbol + remaining).split("")).join("");
 }
 
+/**
+ * Generates the details for a new account.
+ * @returns {{firstName: string, lastName: string, email: string, phoneNumber: string, password: string}} The user's details.
+ */
 export function generateUser() {
   return {
     firstName: faker.person.firstName(),

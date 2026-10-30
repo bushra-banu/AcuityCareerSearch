@@ -1,3 +1,9 @@
+/**
+ * @file Searches for a job, filters the results and starts an application.
+ * The application POST is blocked, so this spec does not create anything on the live site.
+ * Set EXPECTED_JOB_TITLE to override the job title expected in the results.
+ */
+
 import { test, expect } from "../../fixtures/pages.js";
 
 const expectedJobTitle = process.env.EXPECTED_JOB_TITLE ?? "Data Engineer";

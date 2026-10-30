@@ -1,4 +1,10 @@
+/**
+ * Page object for the job search page and its results.
+ */
 export class SearchPage {
+  /**
+   * @param {import("@playwright/test").Page} page - Page to find the elements on.
+   */
   constructor(page) {
     this.page = page;
     this.searchByKeyword = page.locator('[class="keywordsearch-q columnized-search"]');
@@ -11,6 +17,10 @@ export class SearchPage {
     this.selectJobLink = page.locator('[class="colTitle"] a.jobTitle-link');
   }
 
+  /**
+   * Opens the job search page.
+   * @returns {Promise<void>}
+   */
   async open() {
     await this.page.goto("/search");
   }
