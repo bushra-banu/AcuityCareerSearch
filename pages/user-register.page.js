@@ -1,6 +1,7 @@
 export class UserRegisterPage {
   constructor(page) {
     this.page = page;
+    this.createAccountLink = page.getByRole("link", { name: "Create an account" });
     this.emailField = page.locator('[id="fbclc_userName"]');
     this.retypeEmailField = page.locator('[id="fbclc_emailConf"]');
     this.passwordField = page.locator('[id="fbclc_pwd"]');
@@ -11,7 +12,8 @@ export class UserRegisterPage {
     this.signOutBtn = page.locator('[id="_signout"]');
     this.signPage = page.locator('[class="sfpanel_wrapper"]');
     this.prefferedNameField = page.locator('[id="tor__fcust_prefname"]');
-    this.phoneNumberField = page.locator('[id="tor__fcellPhone"]');
+    this.phoneNumberField = page.locator('[id="fbclc_phoneNumber"]');
+    this.countryCodeSelection = page.locator('[id="fbclc_ituCode"]');
     this.countrySelection = page.locator('[id="fbclc_country"]');
     this.countrySelectionOption = page.locator('[id="fbclc_country"]');
     this.termAndConditionLink = page.locator('[id="dataPrivacyId"]');

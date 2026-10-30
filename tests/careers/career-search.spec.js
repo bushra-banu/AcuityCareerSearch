@@ -21,6 +21,8 @@ test.describe("Career Search Functionality", () => {
     await expect(searchPage.selectJobLink.first()).toContainText("Quality");
 
     await searchPage.selectJobLink.first().click();
+    // Apply Now does nothing until the site's scripts have loaded, and they can take several seconds.
+    await page.waitForLoadState("load");
     await applyJobPage.applyButton.first().click();
 
     await page.evaluate(() => {

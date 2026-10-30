@@ -23,6 +23,8 @@ export function generateUser() {
     lastName: faker.person.lastName(),
     // example.com is reserved, so account emails can never reach a real person's mailbox.
     email: faker.internet.email({ provider: "example.com" }),
+    // The site allows one account per phone number. The 000 prefix stops it being a real person's number.
+    phoneNumber: `000${faker.string.numeric(7)}`,
     password: generatePassword(),
   };
 }

@@ -34,7 +34,6 @@ $env:EXPECTED_JOB_TITLE = "Quality Engineering Leader"; npm run test:search
 | Path | Purpose |
 | --- | --- |
 | `playwright.config.js` | Base URL, viewport, timeouts, reporters |
-| `config/urls.js` | Registration URL |
 | `pages/` | Page objects |
 | `fixtures/pages.js` | Injects page objects into tests |
 | `utils/test-data.js` | Faker user and password generation |

@@ -1,13 +1,19 @@
 import { test, expect } from "../../fixtures/pages.js";
-import { urls } from "../../config/urls.js";
 import { generateUser } from "../../utils/test-data.js";
 
 test.describe("Registration Flow Test", () => {
   let user;
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, searchPage, applyJobPage, userRegisterPage }) => {
     user = generateUser();
-    await page.goto(urls.RegistrationURL);
+    // The registration link is tied to a job and breaks when that job closes, so get a new one from an open job.
+    await searchPage.open();
+    await searchPage.searchOpenJobs_Btn.click();
+    await searchPage.selectJobLink.first().click();
+    await page.waitForLoadState("load");
+    await applyJobPage.applyButton.first().click();
+    await applyJobPage.applyNow.click();
+    await userRegisterPage.createAccountLink.click();
   });
 
   test("Verify UserRegistration and JobApplication", async ({ page, userRegisterPage }, testInfo) => {
@@ -19,6 +25,8 @@ test.describe("Registration Flow Test", () => {
     await userRegisterPage.retypeEmailField.pressSequentially(user.email, { delay: 50 });
     await userRegisterPage.passwordField.pressSequentially(user.password, { delay: 50 });
     await userRegisterPage.retypePasswordField.pressSequentially(user.password, { delay: 50 });
+    await userRegisterPage.countryCodeSelection.selectOption({ label: "Ireland (+353)" });
+    await userRegisterPage.phoneNumberField.pressSequentially(user.phoneNumber, { delay: 50 });
     await userRegisterPage.countrySelectionOption.selectOption({ label: "Ireland" }, { force: true });
     await userRegisterPage.termAndConditionLink.click();
     await userRegisterPage.termAndConditionAcceptBtn.click();
