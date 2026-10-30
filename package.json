@@ -1,11 +1,23 @@
 {
-  "devDependencies": {
-    "@faker-js/faker": "^10.1.0",
-    "cypress": "^15.5.0",
-    "cypress-log-to-output": "^1.1.2",
-    "cypress-wait-for-stable-dom": "^0.1.0"
-  },
+  "name": "acuity-career-portal-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright E2E suite for the Acuity careers portal",
   "scripts": {
-    "mytest": "cypress open --e2e --browser chrome"
+    "test": "playwright test",
+    "test:search": "playwright test tests/careers/career-search.spec.js",
+    "test:registration": "playwright test tests/careers/user-registration.spec.js",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report reports/html",
+    "allure:generate": "allure generate reports/allure-results",
+    "allure:open": "allure open reports/allure-report"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.64.1",
+    "allure": "^3.22.1",
+    "allure-playwright": "^3.14.0"
   }
 }
