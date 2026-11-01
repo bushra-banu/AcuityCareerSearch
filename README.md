@@ -29,6 +29,18 @@ PowerShell:
 $env:EXPECTED_JOB_TITLE = "Quality Engineering Leader"; npm run test:search
 ```
 
+## CI
+
+`.github/workflows/e2e.yml` runs the suite on GitHub Actions.
+
+| Trigger | Spec | Why |
+| --- | --- | --- |
+| Pull request to `main` | Search | Checks test changes before they merge. |
+| Monday to Friday, 06:17 UTC | Search | Catches changes on the live site. |
+| Manual, from the Actions tab | Search or registration | Registration creates a real account, so it only runs on request. |
+
+Search runs upload `reports/` as the `playwright-reports` artifact for 14 days. Registration runs upload nothing, because the repo is public and their traces record the account's password.
+
 ## Layout
 
 | Path | Purpose |

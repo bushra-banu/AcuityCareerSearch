@@ -1,0 +1,64 @@
+# Runs the Playwright suite against the live careers site.
+# Only a manual run can select the registration spec, because each run creates a real, permanent account.
+
+name: E2E Tests
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    # 06:17 UTC, Monday to Friday. The site changes without any commit here, so this is what catches it breaking.
+    - cron: "17 6 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: "Spec to run. Registration creates a real account on the live site."
+        type: choice
+        default: search
+        options:
+          - search
+          - registration
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  # Only pull request runs are replaced by newer ones, so a registration run is never stopped partway.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SUITE: ${{ inputs.suite || 'search' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run tests
+        run: npm run "test:$SUITE" -- --forbid-only
+
+      - name: Build Allure report
+        if: ${{ !cancelled() && env.SUITE == 'search' }}
+        run: npm run allure:generate
+
+      # This repo is public and registration traces record the account's password, so only search reports are uploaded.
+      - name: Upload reports
+        if: ${{ !cancelled() && env.SUITE == 'search' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-reports
+          path: reports/
+          retention-days: 14
