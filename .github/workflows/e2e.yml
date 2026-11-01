@@ -36,23 +36,28 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # The Allure report generator is a Node tool.
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: pip install -r requirements.txt
 
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: playwright install --with-deps chromium
 
       - name: Run tests
-        run: npm run "test:$SUITE" -- --forbid-only
+        run: pytest -m "$SUITE"
 
       - name: Build Allure report
         if: ${{ !cancelled() && env.SUITE == 'search' }}
-        run: npm run allure:generate
+        run: npx --yes allure@3.22.1 generate reports/allure-results
 
       # This repo is public and registration traces record the account's password, so only search reports are uploaded.
       - name: Upload reports
